@@ -1,0 +1,7 @@
+name = "udf-api"
+type = "webpack"
+routes = []
+zone_id = '43e6a1df3192e8b76ea316219595aed4'
+usage_model = ''
+compatibility_flags = []
+workers_dev = true

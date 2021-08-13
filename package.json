@@ -1,0 +1,30 @@
+{
+  "name": "udf-api",
+  "version": "0.1.0",
+  "description": "An HTTP POST endpoint to pass through calls to UDFs in Fauna.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/fauna-labs/udf-api.git"
+  },
+  "keywords": [
+    "Cloudflare",
+    "Worker",
+    "UDF",
+    "API",
+    "Fauna",
+    "FaunaDB"
+  ],
+  "author": "Fauna Labs <https://github.com/fauna-labs/>",
+  "license": "MIT-0",
+  "bugs": {
+    "url": "https://github.com/fauna-labs/udf-api/issues"
+  },
+  "homepage": "https://github.com/fauna-labs/udf-api#readme",
+  "dependencies": {
+    "faunadb": "^4.3.0"
+  }
+}
