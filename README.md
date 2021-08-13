@@ -8,13 +8,11 @@ A proof of concept for pass-through UDF invocation via a REST API.
 
 ## Invocation
 
-Make an HTTP POST request to one of the following URLs:
+**NOTE**: Currently only works for databases in the Classic region group.
 
-| URL | Region Group |
-|---|---|
-| https://api.fauna-labs.com/udf | Classic |
-| https://api.eu.fauna-labs.com/udf | Europe |
-| https://api.us.fauna-labs.com/udf | United States |
+Make an HTTP POST request to the following URL:
+
+https://udf-api.robsutter.workers.dev/
 
 The body of the request should contain two fields:
 
