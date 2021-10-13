@@ -1,9 +1,13 @@
 name = "udf-api"
 type = "webpack"
 routes = [
-  "api.fauna-labs.com/udf",
-  "api.fauna-labs.com/eu/udf",
-  "api.fauna-labs.com/us/udf"
+  "api.fauna-labs.com/*"
+# We could specify individual routes, but that slows down 404s.
+# This way we handle route definition in index.js
+#  "api.fauna-labs.com/*",
+#  "api.fauna-labs.com/udf",
+#  "api.fauna-labs.com/eu/udf",
+#  "api.fauna-labs.com/us/udf"
 ]
 zone_id = '43e6a1df3192e8b76ea316219595aed4'
 usage_model = ''

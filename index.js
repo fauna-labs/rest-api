@@ -2,7 +2,6 @@ import faunadb from 'faunadb';
 import { customFetch } from './utils.js';
 
 const validPaths = [
-  '/',
   '/udf',
   '/eu/udf',
   '/us/udf'
@@ -32,9 +31,19 @@ async function handleRequest(request) {
     const udf = body.function;
     const args = body.arguments;
 
+    const url = new URL(request.url).pathname.toLowerCase();
+    let domain = 'db.fauna.com';
+
+    if (url.substring(0, 3) === '/eu') {
+      domain = 'db.eu.fauna.com';
+    } else if (url.substring(0, 3) === '/us') {
+      domain = 'db.us.fauna.com';
+    }
+
     const faunaClient = new faunadb.Client({
       secret: secret,
-      fetch: customFetch
+      domain: domain,
+      fetch: customFetch,
     });
 
     const { Call } = faunadb.query;
