@@ -1,7 +1,11 @@
 name = "udf-api"
 type = "webpack"
-routes = []
+routes = [
+  "api.fauna-labs.com/udf",
+  "api.fauna-labs.com/eu/udf",
+  "api.fauna-labs.com/us/udf"
+]
 zone_id = '43e6a1df3192e8b76ea316219595aed4'
 usage_model = ''
+compatibility_date = "2021-09-23"
 compatibility_flags = []
-workers_dev = true
