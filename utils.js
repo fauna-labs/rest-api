@@ -1,3 +1,6 @@
+// Copyright Fauna, Inc.
+// SPDX-License-Identifier: MIT-0
+
 export function customFetch(url, params) {
     const signal = params.signal;
     delete params.signal;
