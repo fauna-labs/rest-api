@@ -25,6 +25,6 @@
   },
   "homepage": "https://github.com/fauna-labs/udf-api#readme",
   "dependencies": {
-    "faunadb": "^4.3.0"
+    "faunadb": "^4.4.1"
   }
 }
