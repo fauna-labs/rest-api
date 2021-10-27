@@ -75,6 +75,35 @@ curl \
 
 The API should respond with an HTTP status code of 200 and the text *Hello, world!*.
 
+### Deploying into your own Cloudflare account
+
+To deploy this API into your own [Cloudflare][cloudflare] account, you need the following information:
+
+1. [Sign up for a Cloudflare account][cloudflare-signup] if you do not already have one.
+1. Clone this repository and navigate to the *udf-api* directory.
+    ```bash
+    git clone https://github.com/fauna-labs/udf-api.git
+    cd udf-api
+    ```
+1. Install [Cloudflare Wrangler][cloudflare-wrangler-install].
+1. Login to your Cloudflare account.
+    ```bash
+    wrangler login
+    ```
+1. Edit [wrangler.toml](wrangler.toml) and make the following change:
+    ```diff
+    + route = ""
+    - routes = [...]
+    ```
+1. Develop locally:
+    ```bash
+    wrangler dev
+    ```
+1. Deploy to your Cloudflare account:
+    ```bash
+    wrangler publish
+    ```
+
 ## Next steps
 
 Check out the [Fauna documentation][fauna-docs] for more information about UDFs and how to use them to build more robust APIs.
