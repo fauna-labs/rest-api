@@ -1,2 +1,2 @@
-export { createClient } from './FaunaClient';
-export { getFaunaError } from './FaunaErrors';
+export { createClient } from './faunaClient';
+export { getFaunaError } from './faunaErrors';

@@ -25,6 +25,13 @@ router.delete('/collections/:name', async (request) => await deleteCollection(re
 // Database routes
 // router.post('/databases', new Response('Created Database!', { status: 200 }));
 
+// Document routes
+import { createDocument, findDocumentByID, updateDocument, deleteDocument } from './routes';
+router.post('/collections/:name/documents', async (request) => await createDocument(request));
+router.get('/collections/:name/documents/:id', async (request) => await findDocumentByID(request));
+router.put('/collections/:name/documents/:id', async (request) => await updateDocument(request));
+router.delete('/collections/:name/documents/:id', async (request) => await deleteDocument(request));
+
 // UDF routes
 // router.post('/functions', new Response('Created UDF!', { status: 200 }));
 
@@ -44,7 +51,7 @@ router.delete('/collections/:name', async (request) => await deleteCollection(re
 // router.post('/udf', new Response('The /udf endpoint is deprecated.', { status: 200 }));
 
 // Catch-all route
-router.all('*', () => new Response('Not Found.', { status: 404 }));
+router.all('*', () => new Response('Global Not Found', { status: 404 }));
 
 addEventListener('fetch', event =>
   event.respondWith(router.handle(event.request))

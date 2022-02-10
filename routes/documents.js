@@ -5,62 +5,17 @@ import faunadb from 'faunadb';
 import { createClient } from '../utils';
 import { getFaunaError } from '../utils';
 
-// POST /collections
-export async function createCollection(request)  {
+// POST /collections/:name/documents
+export async function createDocument(request)  {
   const client = createClient(request);
   const body = await request.json();
-  const name = body.name;
-
-  try {
-    const { CreateCollection } = faunadb.query;
-
-    const result = await client.query(
-      CreateCollection({
-        name: name
-      })
-    );
-
-    return new Response(JSON.stringify(result), { status: 200 });
-
-  } catch (e) {
-    const faunaError = getFaunaError(e);
-
-    return new Response(faunaError.description, { status: faunaError.status });
-  }
-}
-
-// POST /collections/:name
-export async function findCollectionByName(request)  {
-  const client = createClient(request);
   const { name } = request.params;
 
   try {
-    const { Collection, Get } = faunadb.query;
+    const { Create, Collection } = faunadb.query;
 
     const result = await client.query(
-      Get(Collection(name))
-    );
-
-    return new Response(JSON.stringify(result), { status: 200 });
-
-  } catch (e) {
-    const faunaError = getFaunaError(e);
-
-    return new Response(faunaError.description, { status: faunaError.status });
-  }
-}
-
-// PUT /collections/:name
-export async function updateCollection(request)  {
-  const client = createClient(request);
-  const { name } = request.params;
-  const body = await request.json();
-
-  try {
-    const { Collection, Update } = faunadb.query;
-
-    const result = await client.query(
-      Update(
+      Create(
         Collection(name),
         body
       )
@@ -75,16 +30,62 @@ export async function updateCollection(request)  {
   }
 }
 
-// DELETE /collections/:name
-export async function deleteCollection(request)  {
+// GET /collections/:name/documents/:id
+export async function findDocumentByID(request)  {
   const client = createClient(request);
-  const { name } = request.params;
+  const { name, id } = request.params;
 
   try {
-    const { Collection, Delete } = faunadb.query;
+    const { Collection, Get, Ref } = faunadb.query;
 
     const result = await client.query(
-      Delete(Collection(name))
+      Get(Ref(Collection(name), id))
+    );
+
+    return new Response(JSON.stringify(result), { status: 200 });
+
+  } catch (e) {
+    const faunaError = getFaunaError(e);
+
+    return new Response(faunaError.description, { status: faunaError.status });
+  }
+}
+
+// PUT /collections/:name/documents/:id
+export async function updateDocument(request)  {
+  const client = createClient(request);
+  const { name, id } = request.params;
+  const body = await request.json();
+
+  try {
+    const { Collection, Ref, Update } = faunadb.query;
+
+    const result = await client.query(
+      Update(
+        Ref(Collection(name), id),
+        body
+      )
+    );
+
+    return new Response(JSON.stringify(result), { status: 200 });
+
+  } catch (e) {
+    const faunaError = getFaunaError(e);
+
+    return new Response(faunaError.description, { status: faunaError.status });
+  }
+}
+
+// DELETE /collections/:name/documents/:id
+export async function deleteDocument(request)  {
+  const client = createClient(request);
+  const { name, id } = request.params;
+
+  try {
+    const { Collection, Delete, Ref } = faunadb.query;
+
+    const result = await client.query(
+      Delete(Ref(Collection(name), id))
     );
 
     return new Response(JSON.stringify(result), { status: 200 });
