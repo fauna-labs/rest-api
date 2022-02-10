@@ -16,10 +16,11 @@ router.all('*', (request) => checkAuthorizationHeader(request));
 // router.post('/accessProviders', new Response('Created AccessProvider!', { status: 200 }));
 
 // Collection routes
-import { createCollection, findCollectionByName, updateCollection } from './routes';
+import { createCollection, findCollectionByName, updateCollection, deleteCollection } from './routes';
 router.post('/collections', async (request) => await createCollection(request));
 router.get('/collections/:name', async (request) => await findCollectionByName(request));
 router.put('/collections/:name', async (request) => await updateCollection(request));
+router.delete('/collections/:name', async (request) => await deleteCollection(request));
 
 // Database routes
 // router.post('/databases', new Response('Created Database!', { status: 200 }));

@@ -71,3 +71,23 @@ export async function updateCollection(request)  {
     return new Response(faunaError.description, { status: faunaError.status });
   }
 }
+
+export async function deleteCollection(request)  {
+  const client = createClient(request);
+  const { name } = request.params;
+
+  try {
+    const { Collection, Delete } = faunadb.query;
+
+    const result = await client.query(
+      Delete(Collection(name))
+    );
+
+    return new Response(JSON.stringify(result), { status: 200 });
+
+  } catch (e) {
+    const faunaError = getFaunaError(e);
+
+    return new Response(faunaError.description, { status: faunaError.status });
+  }
+}
