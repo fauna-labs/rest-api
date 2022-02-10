@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/fauna-labs/udf-api#readme",
   "dependencies": {
-    "faunadb": "^4.4.1"
+    "faunadb": "^4.4.1",
+    "itty-router": "^2.4.10"
   }
 }
