@@ -15,5 +15,6 @@ export function createClient(request)  {
   return new faunadb.Client({
     secret,
     domain,
+    headers: { 'X-Fauna-Source': 'rest-api' },
   });
 }

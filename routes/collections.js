@@ -29,7 +29,7 @@ export async function createCollection(request)  {
   }
 }
 
-// POST /collections/:name
+// GET /collections/:name
 export async function findCollectionByName(request)  {
   const client = createClient(request);
   const { name } = request.params;

@@ -18,5 +18,3 @@ export function checkAuthorizationHeader(request)  {
     return unauthorizedResponse;
   }
 }
-
-

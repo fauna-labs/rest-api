@@ -23,7 +23,11 @@ router.put('/collections/:name', async (request) => await updateCollection(reque
 router.delete('/collections/:name', async (request) => await deleteCollection(request));
 
 // Database routes
-// router.post('/databases', new Response('Created Database!', { status: 200 }));
+import { createDatabase, findDatabaseByName, updateDatabase, deleteDatabase } from './routes';
+router.post('/databases', async (request) => await createDatabase(request));
+router.get('/databases/:name', async (request) => await findDatabaseByName(request));
+router.put('/databases/:name', async (request) => await updateDatabase(request));
+router.delete('/databases/:name', async (request) => await deleteDatabase(request));
 
 // Document routes
 import { createDocument, findDocumentByID, updateDocument, deleteDocument } from './routes';
