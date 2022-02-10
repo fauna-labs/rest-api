@@ -1,2 +1,2 @@
-export { createCollection, findCollectionByID } from './collections';
+export { createCollection, findCollectionByName, updateCollection } from './collections';
 // export { createRole } from './roles';

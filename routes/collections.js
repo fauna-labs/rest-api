@@ -28,6 +28,46 @@ export async function createCollection(request)  {
   }
 }
 
-export async function findCollectionByID(id)  {
-  return new Response(`Found Collection(${id})!`, { status: 200 });
+export async function findCollectionByName(request)  {
+  const client = createClient(request);
+  const { name } = request.params;
+
+  try {
+    const { Collection, Get } = faunadb.query;
+
+    const result = await client.query(
+      Get(Collection(name))
+    );
+
+    return new Response(JSON.stringify(result), { status: 200 });
+
+  } catch (e) {
+    const faunaError = getFaunaError(e);
+
+    return new Response(faunaError.description, { status: faunaError.status });
+  }
+}
+
+export async function updateCollection(request)  {
+  const client = createClient(request);
+  const { name } = request.params;
+  const body = await request.json();
+
+  try {
+    const { Collection, Update } = faunadb.query;
+
+    const result = await client.query(
+      Update(
+        Collection(name),
+        body
+      )
+    );
+
+    return new Response(JSON.stringify(result), { status: 200 });
+
+  } catch (e) {
+    const faunaError = getFaunaError(e);
+
+    return new Response(faunaError.description, { status: faunaError.status });
+  }
 }

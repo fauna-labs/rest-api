@@ -16,9 +16,10 @@ router.all('*', (request) => checkAuthorizationHeader(request));
 // router.post('/accessProviders', new Response('Created AccessProvider!', { status: 200 }));
 
 // Collection routes
-import { createCollection, findCollectionByID } from './routes';
+import { createCollection, findCollectionByName, updateCollection } from './routes';
 router.post('/collections', async (request) => await createCollection(request));
-router.get('/collections/:id', async ({ params }) => await findCollectionByID(params.id));
+router.get('/collections/:name', async (request) => await findCollectionByName(request));
+router.put('/collections/:name', async (request) => await updateCollection(request));
 
 // Database routes
 // router.post('/databases', new Response('Created Database!', { status: 200 }));
