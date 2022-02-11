@@ -51,9 +51,6 @@ router.delete('/collections/:name/documents/:id', async (request) => await delet
 // Role routes
 // router.post('/roles', new Response('Created Role!', { status: 200 }));
 
-// Deprecated routes
-// router.post('/udf', new Response('The /udf endpoint is deprecated.', { status: 200 }));
-
 // Catch-all route
 router.all('*', () => new Response('Global Not Found', { status: 404 }));
 
