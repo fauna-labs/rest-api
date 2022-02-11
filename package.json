@@ -2,10 +2,7 @@
   "name": "udf-api",
   "version": "0.1.0",
   "description": "An HTTP POST endpoint to pass through calls to UDFs in Fauna.",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "main": "./index.js",
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/fauna-labs/udf-api.git"
@@ -25,6 +22,7 @@
   },
   "homepage": "https://github.com/fauna-labs/udf-api#readme",
   "dependencies": {
+    "@fauna-labs/fql-parser": "^0.1.1",
     "faunadb": "^4.4.1",
     "itty-router": "^2.4.10"
   }

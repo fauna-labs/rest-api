@@ -46,7 +46,8 @@ router.delete('/collections/:name/documents/:id', async (request) => await delet
 // router.post('/keys', new Response('Created Key!', { status: 200 }));
 
 // Query route
-// router.post('/query', new Response({ query_metadata: { ops: "Lots" }, result: { message: "Hello, world!" } }, { status: 200 }));
+import { evaluateQuery } from './routes';
+router.post('/query', async (request) => await evaluateQuery(request));
 
 // Role routes
 // router.post('/roles', new Response('Created Role!', { status: 200 }));
