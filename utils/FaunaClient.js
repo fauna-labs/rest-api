@@ -7,7 +7,8 @@ import faunadb from 'faunadb';
 // continuing to execute future functions/routes until one returns, closing the response.
 export function createClient(request)  {
   // We know this is set because this middleware is run *after* checkAuthorizationHeader.
-  const secret = request.headers.get('X-Fauna-Secret');
+  // TODO: Better handle the Bearer split.
+  const secret = request.headers.get('Authorization').split(' ')[1];
 
   // Check for a specified domain for Region Groups. If not found, use the Classic endpoint.
   const domain = request.headers.get('X-Fauna-Domain') || 'db.fauna.com';

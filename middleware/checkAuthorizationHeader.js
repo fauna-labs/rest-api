@@ -4,12 +4,12 @@
 // Any handler that does not return will effectively be considered "middleware", 
 // continuing to execute future functions/routes until one returns, closing the response.
 export function checkAuthorizationHeader(request)  {
-  const secret = request.headers.get('X-Fauna-Secret');
+  const secret = request.headers.get('Authorization');
 
   if (secret === null || secret === '') {
     const e = {
       message: 'Unauthorized',
-      WWWAuthenticateHeader: 'Must set header "X-Fauna-Secret"',
+      WWWAuthenticateHeader: 'Must set header "Authorization: Bearer <secret>"',
     }
   
     const unauthorizedResponse = new Response(e.message, { status: 401 });

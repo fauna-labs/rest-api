@@ -14,9 +14,10 @@ export async function evaluateQuery(request)  {
 
     const init = {
       headers: {
-        'Authorization': `Bearer ${request.headers.get('Authorization')}`,
+        'Authorization': request.headers.get('Authorization'),
         'Content-Type': 'application/json',
         'X-Driver-Env': 'restapi-query',
+        'X-Fauna-Source': 'rest-api',
       },
       method: 'POST',
       body: wireProtocolQuery,
