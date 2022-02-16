@@ -3,12 +3,12 @@
 
 name = "rest-api"
 type = "webpack"
-workers_dev = true
+# workers_dev = true
 # We could specify individual routes, but that slows down 404s.
 # This way we handle route definition in index.js with itty.
-# routes = [
-#   "api.fauna-labs.com/*"
-# ]
+routes = [
+  "api.fauna-labs.com/*"
+]
 zone_id = '43e6a1df3192e8b76ea316219595aed4'
 usage_model = ''
 compatibility_date = "2021-09-23"

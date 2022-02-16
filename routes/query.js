@@ -1,14 +1,10 @@
 // Copyright Fauna, Inc.
 // SPDX-License-Identifier: MIT-0
 
-// import faunadb from 'faunadb';
-// import { createClient } from '../utils';
 import { getFaunaError } from '../utils';
 
 // POST /query
 export async function evaluateQuery(request)  {
-  // const client = createClient(request);
-  // const { query, args } = await request.json();
   const { query } = await request.json();
 
   const wasm = await import('@fauna-labs/fql-parser');
@@ -18,8 +14,9 @@ export async function evaluateQuery(request)  {
 
     const init = {
       headers: {
-        'Authorization': `Bearer ${request.headers.get('X-Fauna-Secret')}`,
+        'Authorization': `Bearer ${request.headers.get('Authorization')}`,
         'Content-Type': 'application/json',
+        'X-Driver-Env': 'restapi-query',
       },
       method: 'POST',
       body: wireProtocolQuery,
@@ -34,7 +31,6 @@ export async function evaluateQuery(request)  {
     return new Response(JSON.stringify(await result.json()), { status: 200 });
 
   } catch (e) {
-    // return new Response(e, { status: 499 });
     const faunaError = getFaunaError(e);
 
     return new Response(faunaError.description, { status: faunaError.status });
